@@ -1,0 +1,21 @@
+{
+  "manifest_version": 2,
+
+  "name": "Grab 'n Tag",
+  "description": "Batch-download and name images according to their content.",
+  "version": "1.0",
+
+  "browser_action": {
+    "default_icon": "image-download-symbol.png",
+    "default_popup": "popup.html"
+  },
+  "content_security_policy": "script-src 'self' https://ajax.googleapis.com; object-src 'self'",
+  "permissions": [
+    "activeTab",
+    "downloads"
+  ],
+  "content_scripts": [ {
+    "matches": [ "<all_urls>"],
+    "js": [ "content.js", "jquery-3.1.1.min.js" ]
+  }]
+}

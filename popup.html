@@ -1,0 +1,54 @@
+<!doctype html>
+
+<html>
+  <head>
+    <title>PicGrabber</title>
+    <style>
+      body {
+        font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
+        font-size: 100%;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        max-width: 150px;
+        background: #EFEFBB; /* fallback for old browsers */
+        background: -webkit-linear-gradient(to left, #EFEFBB , #D4D3DD); /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to left, #EFEFBB , #D4D3DD); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+      }
+      #user-input {
+        margin-bottom: 3px;
+        width: 145px
+      }
+      .submit {
+        padding: 0 56px;
+        background-color: rgb(11, 69, 140);
+        color: white;
+        font-weight: bold;
+        border: 1px solid rgb(11, 69, 140);
+      }
+      .submit:hover {
+        cursor: pointer;
+        color: rgb(11, 69, 140);
+        background-color: rgb(11, 175, 140);
+        border: 1px solid rgb(11, 69, 140);
+        text-decoration: underline;
+      }
+    </style>
+
+    <!--
+      - JavaScript and HTML must be in separate files: see our Content Security
+      - Policy documentation[1] for details and explanation.
+      -
+      - [1]: https://developer.chrome.com/extensions/contentSecurityPolicy
+     -->
+    <script src="jquery-3.1.1.min.js"></script>
+    <script src="popup.js"></script>
+  </head>
+  <body>
+    <div id="status"></div>
+    <img id="image-result" hidden>
+    <form id="form">
+      <input id="user-input" type="text" name="tag" placeholder="What Should I Grab?"/>
+      <input class="submit" type="submit" name="Submit" value="Grab!"/>
+    </form>
+  </body>
+</html>
