@@ -6,7 +6,7 @@ Grab 'n Tag is a Chrome extension that enables batch downloading and automatic n
 
 ## Features
 
-Grab 'n Tag makes use a form of machine learning known as an Artificial Neural Network (ANN) to analyze images on the web-page. The ANN is trained to be highly accurate by feeding it large volumes of sample data, in this case, images which have already been tagged with for their content. Once trained, the ANN analyzes individual images and returns lists of tags that it believes are associated with them.
+Grab 'n Tag makes use of a form of machine learning known as an Artificial Neural Network (ANN) to analyze images on the web-page. The ANN is trained to be highly accurate by feeding it large volumes of sample data, in this case, images which have already been tagged with for their content. Once trained, the ANN analyzes individual images and returns lists of tags that it believes are associated with them.
 Our own ANN server is in development so in the meantime Grab 'n Tag makes use of [Clarifai](https://www.clarifai.com/)'s image recognition API to get tags associated with images.
 Grab 'n Tag features a non-intrusive input and submit form for users to enter search terms to filter their batch download by.
 ![main-view](./grabntagview.png)
