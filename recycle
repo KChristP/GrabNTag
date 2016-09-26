@@ -1,8 +1,0 @@
-"background": {
-  "scripts": ["background.js", "jquery-3.1.1.slim.min.js"]
-},
-"content_scripts": [ {
-  "js": [ "jquery-3.1.1.slim.min.js", "background.js", "popup.js" ],
-  "matches": [ "http://*/*", "https://*/*"]
-}]
-http://cbsnews1.cbsistatic.com/hub/i/r/2016/09/23/3a4834fb-5cf7-46c5-b72a-ff3078df5bfb/thumbnail/620x350/2d099b53fa5d9088fb49a4b1908b7b88/politicaltheatre-mark-peterson-019.jpg" alt="" height="350" width="620" srcset="http://cbsnews1.cbsistatic.com/hub/i/r/2016/09/23/3a4834fb-5cf7-46c5-b72a-ff3078df5bfb/thumbnail/620x350/2d099b53fa5d9088fb49a4b1908b7b88/politicaltheatre-mark-peterson-019.jpg 1x, http://cbsnews3.cbsistatic.com/hub/i/r/2016/09/23/3a4834fb-5cf7-46c5-b72a-ff3078df5bfb/thumbnail/1240x700/4f191b94a4448924ad3dfd5981f12d9f/politicaltheatre-mark-peterson-019.jp
