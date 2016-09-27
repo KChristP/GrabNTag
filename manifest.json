@@ -3,7 +3,7 @@
 
   "name": "Grab 'n Tag",
   "description": "Batch-download and name images according to their content.",
-  "version": "1.0",
+  "version": "1.0.2",
 
   "browser_action": {
     "default_icon": "icon_16.png",

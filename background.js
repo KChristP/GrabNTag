@@ -1,4 +1,5 @@
 let tagFilter
+let searchCount
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
   if(request.text === "grab-images"){
     tagFilter = request.tagFilter
@@ -46,16 +47,26 @@ function getTags(url) {
 };
 
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
+  if (request.text === "count"){
+    searchCount = request.content
+  }
   if (request.text === "crawl"){
       // crawlForBestImageUrl(request.content)
-      getTags(request.content.url)
+    getTags(request.content.url)
+    countDecrement()
   }
   if (request.text === "get-tags"){
     getTags(request.content)
+    countDecrement()
   }
 })
 
-
+function countDecrement (){
+  searchCount --
+  if (searchCount === 0) {
+    chrome.runtime.sendMessage({text: "finished-search"})
+  }
+}
 // function crawlForBestImageUrl(imageLinkData){
 //   let originalUrl = imageLinkData.url
 //

@@ -2,6 +2,8 @@ let selfSelect = false
 
 function imageFind() {
   let imgs = document.getElementsByTagName("img");
+  chrome.runtime.sendMessage({text: "count", content: imgs.length});
+
   [].slice.call(imgs).forEach((img) => {
     if(img.parentNode.nodeName === "A"){
       chrome.runtime.sendMessage({text: "crawl", content: {href: img.parentNode.href, url: img.src}})

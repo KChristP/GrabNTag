@@ -13,6 +13,7 @@
         background: #EFEFBB; /* fallback for old browsers */
         background: -webkit-linear-gradient(to left, #EFEFBB , #D4D3DD); /* Chrome 10-25, Safari 5.1-6 */
         background: linear-gradient(to left, #EFEFBB , #D4D3DD); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        position: relative;
       }
       #user-input {
         margin-top: 3px;
@@ -36,6 +37,31 @@
         border: 1px solid rgb(11, 69, 140);
         text-decoration: underline;
       }
+      .loader {
+        display: none;
+        position: absolute;
+        left: 50px;
+        /*bottom: 0px;*/
+        top: -1px;
+        border: 16px solid #d4d3dc;
+        border-radius: 50%;
+        border-top: 16px solid #efefbb;
+        width: 13px;
+        height: 13px;
+        -webkit-animation: spin 2s linear infinite;
+        animation: spin 2s linear infinite;
+        opacity: 0.8;
+      }
+
+      @-webkit-keyframes spin {
+        0% { -webkit-transform: rotate(0deg); }
+        100% { -webkit-transform: rotate(360deg); }
+      }
+
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
     </style>
 
     <!--
@@ -48,8 +74,7 @@
     <script src="popup.js"></script>
   </head>
   <body>
-    <div id="status"></div>
-    <img id="image-result" hidden>
+    <div id="loader" class="loader"></div>
     <form id="form">
       <input class="submit" type="submit" name="Submit" value="Grab!"/>
       <input id="user-input" type="text" name="tag" placeholder="What Should I Grab?" autocomplete="false"/>
