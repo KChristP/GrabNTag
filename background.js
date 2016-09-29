@@ -1,5 +1,6 @@
 let tagFilter
 let searchCount
+let accessToken = 0
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
   if(request.text === "grab-images"){
     tagFilter = request.tagFilter
@@ -33,18 +34,43 @@ function downloadIfMatched(responseObject){
 }
 
 function getTags(url) {
+  // console.log(`AJAXING ${url}`);
   $.ajax({
     'url': 'https://api.clarifai.com/v1/tag',
     'headers': {
-        'Authorization': 'Bearer ' + 'k3DcKwLUFrDqz3CCNNR5SieiIDCUZ6'
+        'Authorization': 'Bearer ' + accessToken
     },
     'data': {url: url},
     'type': 'POST',
     success: function (response) {
         downloadIfMatched(response);
+    },
+    'error': function(response){
+      if(response.responseText.search("TOKEN_INVALID")){
+        getNewToken(() => "")
+      }
     }
   });
 };
+
+function getNewToken(successCallback){
+  $.ajax({
+    'url': 'https://api.clarifai.com/v1/token',
+    'data': {
+      client_id: "IlKnWj4AP0XcibvMFzKlZxt_bd6AjcuULXHVe_X4",
+      client_secret: "O_XmtxfUcQt517pmeNXwQEWoXEAV9CiKKVoV8hYm",
+      grant_type: "client_credentials"
+    },
+    'type': 'POST',
+    success: function (response) {
+      accessToken = response.access_token;
+      successCallback()
+    },
+    'error': function(response){
+      console.log(response);
+    }
+  });
+}
 
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
   if (request.text === "count"){
@@ -52,12 +78,26 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
   }
   if (request.text === "crawl"){
       // crawlForBestImageUrl(request.content)
-    getTags(request.content.url)
-    countDecrement()
+    if (!accessToken){
+      getNewToken(() => {
+        getTags(request.content);
+        countDecrement()
+      })
+    } else {
+      getTags(request.content.url)
+      countDecrement()
+    }
   }
   if (request.text === "get-tags"){
+    if (!accessToken){
+      getNewToken(() => {
+        getTags(request.content);
+        countDecrement()
+      })
+    } else {
     getTags(request.content)
     countDecrement()
+    }
   }
 })
 
